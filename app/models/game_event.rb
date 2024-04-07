@@ -9,6 +9,9 @@ class GameEvent < ApplicationRecord
     belongs_to :user
     belongs_to :game
 
+    scope :games_played_counts, -> (user_id) { joins(:game).where(user_id: user_id, event_type: "COMPLETED").group(:category).count }
+    scope :total_games_played, -> (user_id) { where(user_id: user_id, event_type: "COMPLETED").count }
+
     private
 
     def set_occured_at_to_now
