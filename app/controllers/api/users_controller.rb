@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:email, :username, :full_name, :password)
+        params.require(:user).permit(:email, :username, :full_name, :password)
     end
 
     def game_event_params

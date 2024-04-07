@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "User Requests", type: :request do
     describe "POST /api/user" do
         it "returns created user" do
-            post "/api/user", params: { full_name: "Test User", email: "test@test.com", username: "test_user", password: "test123" }
+            post "/api/user", params: { user: { full_name: "Test User", email: "test@test.com", username: "test_user", password: "test123" }}
 
             json = JSON.parse(response.body)
 
