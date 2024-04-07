@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   namespace :api do
     post "/user", to: "users#create"
     post "/sessions", to: "sessions#create"
+    get "/games", to: "games#index"
   end
 end

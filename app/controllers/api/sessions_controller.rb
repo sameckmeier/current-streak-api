@@ -10,7 +10,6 @@ class Api::SessionsController < ApplicationController
         else
             render json: {message: "Incorrect password"}, status: :unauthorized
         end
-
     end
 
     private 
