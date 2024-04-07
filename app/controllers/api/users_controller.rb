@@ -1,8 +1,15 @@
 class Api::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
+    rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
-    def create 
+    def get
+        render json: {
+            user: UserSerializer.new(current_user), 
+        }, status: :created
+    end
+
+    def create
         user = User.create!(user_params)
 
         render json: {
@@ -30,5 +37,9 @@ class Api::UsersController < ApplicationController
 
     def handle_invalid_record(e)
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
+    def handle_record_not_found(e)
+        render json: { message: "User doesn't exist" }, status: :unauthorized
     end
 end
