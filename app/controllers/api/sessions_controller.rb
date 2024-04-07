@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
 
         if user.authenticate(credential_params[:password])
             token = encode_token(user_id: user.id)
-            render json: { token: token }, status: :accepted
+            render json: { token: token }, status: :ok
         else
             render json: {message: "Incorrect password"}, status: :unauthorized
         end
