@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     def get
         render json: {
             user: UserSerializer.new(current_user), 
-        }, status: :created
+        }, status: :ok
     end
 
     def create
