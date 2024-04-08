@@ -8,7 +8,9 @@ RSpec.describe "User Requests", type: :request do
             json = JSON.parse(response.body)
 
             expect(json["user"]).to be_present
+            expect(json["user"]["full_name"]).to eq("Test User")
             expect(json["user"]["email"]).to eq("test@test.com")
+            expect(json["user"]["username"]).to eq("test_user")
             expect(response.status).to eq(201)
         end
     end

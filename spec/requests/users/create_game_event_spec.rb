@@ -14,6 +14,7 @@ RSpec.describe "User Requests", type: :request do
 
             expect(json["game_event"]).to be_present
             expect(json["game_event"]["game_id"]).to eq(game.id)
+            expect(json["game_event"]["user_id"]).to eq(user.id)
             expect(response.status).to eq(201)
         end
     end

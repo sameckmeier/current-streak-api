@@ -14,6 +14,7 @@ RSpec.describe "Game Requests", type: :request do
 
             json = JSON.parse(response.body)
 
+            expect(json["games"]).to be_present
             expect(json["games"].length()).to eq(Game::CATEGORIES.length())
             expect(response.status).to eq(200)
         end
