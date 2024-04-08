@@ -22,7 +22,7 @@ class GameEvent < ApplicationRecord
         # and the element's index represents days ago from today, ie, index 0 would be today
         # and index 1 would be 1 day ago from today.
         streak = []
-        today = DateTime.now.to_date
+        today = Date.today
         
         # Iterate over game events, calculate streak index by today - game_event#occured_at,
         # and set that index to true to represent that a game was completed on that day in the past or today.
