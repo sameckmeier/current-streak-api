@@ -6,10 +6,11 @@ class Api::SessionsController < ApplicationController
 
         if !user
             render json: { message: "User doesn't exist" }, status: :unauthorized
+            return
         end
 
         if user.authenticate(credential_params[:password])
-            token = encode_token(user_id: user.id)
+            token = encode_token(user_id: user.id, exp: (Time.now + 15.minutes).to_i)
             render json: { token: token }, status: :ok
         else
             render json: {message: "Incorrect password"}, status: :unauthorized
