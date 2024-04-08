@@ -15,23 +15,27 @@ class GameEvent < ApplicationRecord
     def self.current_streak_in_days(user_id)
         res = 0
 
-        # fetch all game events sorted by occured_at in DESC order
+        # Fetch all game events sorted by occured_at in DESC order.
         game_events = self.where(user_id: user_id, event_type: "COMPLETED").order(occured_at: :desc)
         
-        # set variable streak to an empty array where each element can be true/nil
-        # and the element's index represents days ago from today, ie, index 6 would be 6 days ago from today
+        # Set variable streak to an empty array where each element can be true/nil
+        # and the element's index represents days ago from today, ie, index 0 would be today
+        # and index 1 would be 1 day ago from today.
         streak = []
         today = DateTime.now.to_date
         
-        # iterate over game events, calculate streak index by today - game_event#occured_at,
-        # and set that index to true to represent that a game was completed on that day in the past or today
+        # Iterate over game events, calculate streak index by today - game_event#occured_at,
+        # and set that index to true to represent that a game was completed on that day in the past or today.
         game_events.each do |game_event|
             i = (today - game_event.occured_at.to_date).to_i
             streak[i] = true
         end
 
-        # starting at index 1, count current continous streak and
-        # break when we encounter the first nil element in streak
+        # Starting at index 1, count current continous streak and
+        # break when we encounter the first nil element in the streak array
+        # since a nil element signifies that the user did not complete a game that day.
+        # This loop starts at index 1 instead of index 0 to prevent returning a current streak of 0
+        # because users can still have a continous streak even if they haven't played today. 
         i = 1
         while i < streak.length()
             if streak[i]
@@ -44,9 +48,7 @@ class GameEvent < ApplicationRecord
         end
 
         # check whether user completed a game today and if so increment res by 1
-        if streak[0]
-            res += 1
-        end
+        res += 1 if streak[0]
 
         return res
     end
