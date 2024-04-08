@@ -9,13 +9,15 @@ class User < ApplicationRecord
 
         total_games_played = GameEvent.total_games_played(self.id)
         games_played_counts = GameEvent.games_played_counts(self.id)
+        current_streak_in_days = GameEvent.current_streak_in_days(self.id)
 
         return {
             total_games_played: total_games_played,
             total_math_games_played: games_played_counts["Math"],
             total_reading_games_played: games_played_counts["Reading"],
             total_speaking_games_played: games_played_counts["Speaking"],
-            total_writing_games_played: games_played_counts["Writing"]
+            total_writing_games_played: games_played_counts["Writing"],
+            current_streak_in_days: current_streak_in_days
         }
     end
 end

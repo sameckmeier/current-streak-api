@@ -12,7 +12,7 @@ class GameEvent < ApplicationRecord
     scope :games_played_counts, -> (user_id) { joins(:game).where(user_id: user_id, event_type: "COMPLETED").group(:category).count }
     scope :total_games_played, -> (user_id) { where(user_id: user_id, event_type: "COMPLETED").count }
 
-    def self.current_streak(user_id)
+    def self.current_streak_in_days(user_id)
         res = 0
 
         # fetch all game events sorted by occured_at in DESC order
