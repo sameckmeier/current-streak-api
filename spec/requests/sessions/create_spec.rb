@@ -5,7 +5,7 @@ RSpec.describe "Session Requests", type: :request do
         let!(:user) { User.create(full_name: "Test User", email: "test@test.com", username: "test_user", password: "test123") }
 
         it "returns auth token" do
-            post "/api/sessions", params: { email: "test@test.com", password: "test123" }
+            post "/api/sessions", params: { credentials: { email: "test@test.com", password: "test123" }}
 
             json = JSON.parse(response.body)
 
