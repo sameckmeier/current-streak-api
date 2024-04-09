@@ -12,6 +12,8 @@
 * Configuration
     * Add .env file to the project’s root directory
     * Add following vars to .env file:
+        * DATABASE_HOST="localhost"
+        * DATABASE_PORT=5432
         * DATABASE_USER=“your-db-user”
         * DATABASE_PASSWORD=“your-db-password”
         * JWT_SECRET_KEY=“your-secret-jwt-key“
