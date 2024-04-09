@@ -1,9 +1,14 @@
 # README
 * Ruby version
     * 3.3.0
+    * Recommendation for Mac users: use chruby and ruby-install to install this version (https://mac.install.guide/ruby/12)
 * System dependencies
     * PostgreSQL 14.11
+        * Recommendation for Mac users: install using homebrew (https://formulae.brew.sh/formula/postgresql@14 and https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/)
+    * Bundler 2.5.7
+        * Run `gem install bundler` 
     * Rails 7.1.3.2
+        * Run `gem install rails`
 * Configuration
     * Add .env file to the project’s root directory
     * Add following vars to .env file:
