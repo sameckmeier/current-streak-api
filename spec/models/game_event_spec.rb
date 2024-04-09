@@ -35,7 +35,7 @@ RSpec.describe "GameEvent Model", type: :request do
         describe "current streak includes today" do
             describe "3 day streak" do
                 it "returns correct streak count" do
-                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: DateTime.now)
+                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: Time.now.utc)
                     GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: 1.days.ago)
                     GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: 2.days.ago)
 
@@ -45,7 +45,7 @@ RSpec.describe "GameEvent Model", type: :request do
 
             describe "2 day streak with interuption" do
                 it "returns correct streak count" do
-                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: DateTime.now)
+                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: Time.now.utc)
                     GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: 1.days.ago)
                     GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: 3.days.ago)
 
@@ -55,7 +55,7 @@ RSpec.describe "GameEvent Model", type: :request do
 
             describe "1 day streak" do
                 it "returns correct streak count" do
-                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: DateTime.now)
+                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: Time.now.utc)
 
                     expect(GameEvent.current_streak_in_days(user.id)).to eq(1)
                 end
@@ -63,7 +63,7 @@ RSpec.describe "GameEvent Model", type: :request do
 
             describe "1 day streak with interuption" do
                 it "returns correct streak count" do
-                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: DateTime.now)
+                    GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: Time.now.utc)
                     GameEvent.create!(user_id: user.id, game_id: game.id, event_type: "COMPLETED", occured_at: 2.days.ago)
 
                     expect(GameEvent.current_streak_in_days(user.id)).to eq(1)

@@ -22,8 +22,8 @@ class GameEvent < ApplicationRecord
         # and the element's index represents days ago from today, ie, index 0 would be today
         # and index 1 would be 1 day ago from today.
         streak = []
-        today = Date.today
-        
+        today = Time.now.utc.to_date
+
         # Iterate over game events, calculate streak index by today - game_event#occured_at,
         # and set that index to true to represent that a game was completed on that day in the past or today.
         game_events.each do |game_event|
@@ -47,7 +47,7 @@ class GameEvent < ApplicationRecord
             i += 1
         end
 
-        # check whether user completed a game today and if so increment res by 1
+        # Check whether user completed a game today and if so increment res by 1.
         res += 1 if streak[0]
 
         return res
@@ -57,7 +57,7 @@ class GameEvent < ApplicationRecord
 
     def set_occured_at_to_now
         if !self.occured_at
-            self.occured_at = Time.now
+            self.occured_at = Time.now.utc
         end
     end
 end
