@@ -13,10 +13,10 @@ class User < ApplicationRecord
 
         return {
             total_games_played: total_games_played,
-            total_math_games_played: games_played_counts["Math"],
-            total_reading_games_played: games_played_counts["Reading"],
-            total_speaking_games_played: games_played_counts["Speaking"],
-            total_writing_games_played: games_played_counts["Writing"],
+            total_math_games_played: games_played_counts["Math"] || 0,
+            total_reading_games_played: games_played_counts["Reading"] || 0,
+            total_speaking_games_played: games_played_counts["Speaking"] || 0,
+            total_writing_games_played: games_played_counts["Writing"] || 0,
             current_streak_in_days: current_streak_in_days
         }
     end

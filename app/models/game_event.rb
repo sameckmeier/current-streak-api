@@ -57,8 +57,6 @@ class GameEvent < ApplicationRecord
     private
 
     def set_occured_at_to_now
-        if !self.occured_at
-            self.occured_at = Time.now.utc
-        end
+        self.occured_at = Time.now.utc if !self.occured_at
     end
 end
