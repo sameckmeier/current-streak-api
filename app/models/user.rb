@@ -5,7 +5,14 @@ class User < ApplicationRecord
     validates :email, :username, :full_name, presence: true
 
     def stats
-        return {} if !self.id
+        return {
+            total_games_played: 0,
+            total_math_games_played: 0,
+            total_reading_games_played: 0,
+            total_speaking_games_played: 0,
+            total_writing_games_played: 0,
+            current_streak_in_days: 0
+        } if !self.id
 
         total_games_played = GameEvent.total_games_played(self.id)
         games_played_counts = GameEvent.games_played_counts(self.id)
