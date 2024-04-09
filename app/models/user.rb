@@ -4,6 +4,8 @@ class User < ApplicationRecord
     validates :email, :username, uniqueness: true
     validates :email, :username, :full_name, presence: true
 
+    has_many :game_events
+
     def stats
         return {
             total_games_played: 0,
