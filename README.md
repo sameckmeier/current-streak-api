@@ -1,10 +1,10 @@
 # README
 * Ruby version
     * 3.3.0
-    * Recommendation for Mac users: use chruby and ruby-install to install this version (https://mac.install.guide/ruby/12)
+    * Recommendation for Mac users: install chruby and ruby-install using homebrew to install this version of ruby (https://mac.install.guide/ruby/12)
 * System dependencies
-    * PostgreSQL 14.11
-        * Recommendation for Mac users: install using homebrew (https://formulae.brew.sh/formula/postgresql@14 and https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/)
+    * PostgreSQL 16.2
+        * Recommendation for Mac users: install using homebrew (https://formulae.brew.sh/formula/postgresql@16). If you are not familiar with homebrew, I recommend reviewing this article to install PostgreSQL (https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/). Note, the article lists postgresql@14 rather than postgresql@16, so be sure to run all commands using postgresql@16.
     * Bundler 2.5.7
         * Run `gem install bundler` 
     * Rails 7.1.3.2
