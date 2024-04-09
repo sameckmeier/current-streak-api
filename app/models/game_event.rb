@@ -31,11 +31,15 @@ class GameEvent < ApplicationRecord
             streak[i] = true
         end
 
+        # Check whether user completed a game today and if so increment res by 1.
+        res += 1 if streak[0]
+
         # Starting at index 1, count current continous streak and
         # break when we encounter the first nil element in the streak array
         # since a nil element signifies that the user did not complete a game that day.
-        # This loop starts at index 1 instead of index 0 to prevent returning a current streak of 0
-        # because users can still have a continous streak even if they haven't played today. 
+        # This loop starts at index 1 instead of index 0 since we have already checked index 0
+        # and to prevent returning a current streak of 0 because users can still have
+        # a continous streak even if they haven't played today. 
         i = 1
         while i < streak.length()
             if streak[i]
@@ -46,9 +50,6 @@ class GameEvent < ApplicationRecord
 
             i += 1
         end
-
-        # Check whether user completed a game today and if so increment res by 1.
-        res += 1 if streak[0]
 
         return res
     end
